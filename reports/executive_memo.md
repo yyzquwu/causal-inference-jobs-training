@@ -2,18 +2,20 @@
 
 **Question:** Does job training increase 1978 earnings?
 
-**What we ran:**
-- Naive difference (baseline)
-- Propensity-score matching
-- Inverse probability weighting
-- Doubly robust estimator
+## Recommendation
+Proceed with a phased expansion only in segments with good overlap and balance; treat current effect size as promising but uncertain.
 
-**Decision framing:**
-- Treat the doubly robust estimate as the primary signal because it is consistent if either propensity or outcome model is correct.
-- Require acceptable overlap and post-weighting balance before production decisions.
-- If overlap is poor, target rollout to regions/populations with support and collect more data.
+## Why this recommendation is credible
+- We triangulated across naive, matching, IPW, and doubly robust estimators rather than relying on one model.
+- We reported uncertainty intervals and diagnostics (overlap, weight concentration, ESS, and post-weight balance) before interpretation.
+- We explicitly identified residual confounding risk and where targeting/model improvements are required.
 
-**Assumptions and limitations:**
+## Practical next-step framework
+1. Define go/no-go thresholds (e.g., max post-weight |SMD| <= 0.10, ESS not severely degraded).
+2. Roll out first to high-support populations; monitor outcome and fairness KPIs monthly.
+3. Refit and revalidate quarterly as labor-market conditions shift.
+
+## Assumptions and limitations
 - No unmeasured confounding after observed covariates.
-- Stable treatment effects and no spillovers.
-- Historical labor market context may limit external validity to current programs.
+- Stable treatment effects and no interference between participants.
+- Historical context and program implementation details affect external validity.

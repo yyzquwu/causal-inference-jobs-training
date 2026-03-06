@@ -24,3 +24,20 @@ def test_estimators_close_to_true_effect_in_randomized_setting() -> None:
     assert abs(naive - true_effect) < 0.2
     assert abs(ipw - true_effect) < 0.2
     assert abs(dr - true_effect) < 0.2
+
+
+def test_propensity_scores_are_bounded_and_non_degenerate_with_signal() -> None:
+    rng = np.random.default_rng(7)
+    n = 4000
+    x1 = rng.normal(size=n)
+    x2 = rng.normal(size=n)
+
+    logits = -0.5 + 1.2 * x1 - 0.8 * x2
+    probs = 1.0 / (1.0 + np.exp(-logits))
+    treatment = rng.binomial(1, probs)
+
+    ps = propensity_scores(np.column_stack([x1, x2]), treatment)
+
+    assert np.all(ps >= 0.01)
+    assert np.all(ps <= 0.99)
+    assert float(np.std(ps)) > 0.05

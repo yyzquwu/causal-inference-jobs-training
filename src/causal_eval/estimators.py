@@ -36,7 +36,19 @@ def propensity_scores(features: np.ndarray, treatment: np.ndarray) -> np.ndarray
         ridge = 1e-4 * np.sum(beta[1:] ** 2)
         return float(neg_log_likelihood + ridge)
 
-    result = minimize(objective, x0=np.zeros(design.shape[1]), method="BFGS")
+    def gradient(beta: np.ndarray) -> np.ndarray:
+        logits = design @ beta
+        probs = _sigmoid(logits)
+        grad = design.T @ (probs - treatment)
+        ridge_grad = np.concatenate(([0.0], 2e-4 * beta[1:]))
+        return grad + ridge_grad
+
+    result = minimize(
+        objective,
+        x0=np.zeros(design.shape[1]),
+        jac=gradient,
+        method="L-BFGS-B",
+    )
     if not result.success:
         mean_prob = np.mean(treatment)
         return np.full_like(treatment, fill_value=np.clip(mean_prob, 0.01, 0.99), dtype=float)
