@@ -65,7 +65,7 @@
 - The ESS reduction and residual imbalance imply nontrivial extrapolation risk, so any real-world recommendation should stay cautious and diagnostics-guided.
 - The analysis emphasizes a causal-learning mindset: uncertainty, overlap, weight concentration, and balance are all explicitly surfaced.
 
-## Recommended Strengthening Steps
+## Next Iterations
 1. Add nonlinear propensity specifications (splines/interactions) and compare calibration + balance improvements.
 2. Add placebo-outcome checks (re74/re75 as pseudo-outcomes) to stress-test unmeasured confounding risk.
 3. Add sensitivity curves under trimming and covariate-set perturbations to quantify estimate fragility.

@@ -5,7 +5,7 @@
 ## Recommendation
 Proceed with a phased expansion only in segments with good overlap and balance; treat current effect size as promising but uncertain.
 
-## Why this recommendation is credible
+## Why this recommendation is well-supported
 - We triangulated across naive, matching, IPW, and doubly robust estimators rather than relying on one model.
 - We reported uncertainty intervals and diagnostics (overlap, weight concentration, ESS, and post-weight balance) before interpretation.
 - We explicitly identified residual confounding risk and where targeting/model improvements are required.
