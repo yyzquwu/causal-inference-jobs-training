@@ -41,12 +41,14 @@ Generated artifacts:
 - `reports/executive_memo.md`
 - `reports/methods_appendix.md`
 - `reports/figures/`
+- `notebooks/causal_walkthrough.ipynb`
 
 ## Repository Structure
 
 - `src/causal_eval/estimators.py`: core causal estimators and bootstrap utilities.
 - `src/causal_eval/diagnostics.py`: overlap and covariate-balance diagnostics.
 - `scripts/run_demo.py`: end-to-end workflow from data to reports.
+- `notebooks/causal_walkthrough.ipynb`: reader-friendly interactive walkthrough layered on top of the package code.
 - `tests/`: estimator and diagnostics tests.
 - `reports/`: generated outputs, appendix, and figures.
 
