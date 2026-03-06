@@ -1,16 +1,16 @@
 # causal-inference-jobs-training
 
 Policy-evaluation portfolio project using the LaLonde job training dataset.  
-This repository reflects my genuine interest in causal inference: moving from raw observational data to transparent evidence, then pressure-testing the answer until the fragile parts are visible.
+This repository reflects what keeps pulling me toward causal inference: starting with messy observational data, getting to an estimate, and then spending just as much time testing how much trust that estimate deserves.
 
 ## Project Motivation
 
-I built this project to practice end-to-end causal inference on observational data and document the full workflow clearly:
-- Framing estimands and assumptions clearly.
-- Estimating treatment effects with multiple complementary estimators.
-- Stress-testing identification with overlap, balance, and weight diagnostics.
-- Adding falsification checks and subgroup analysis instead of stopping at one full-sample estimate.
-- Communicating where I would trust the result, and where I would not.
+I built this project because I wanted to work through an observational causal problem in a way that felt honest from beginning to end:
+- starting with the estimand and assumptions instead of jumping straight to a model,
+- comparing several effect estimators rather than clinging to one result,
+- checking overlap, balance, and weight behavior before getting too comfortable,
+- adding placebo checks and subgroup slices to see where the story holds up and where it starts to wobble,
+- and writing down where the analysis feels credible, and where it still feels exposed.
 
 ## Methods Implemented
 
@@ -48,14 +48,14 @@ Generated artifacts:
 - `src/causal_eval/estimators.py`: core causal estimators and bootstrap utilities.
 - `src/causal_eval/diagnostics.py`: overlap and covariate-balance diagnostics.
 - `scripts/run_demo.py`: end-to-end workflow from data to reports.
-- `notebooks/causal_walkthrough.ipynb`: reader-friendly interactive walkthrough layered on top of the package code.
+- `notebooks/causal_walkthrough.ipynb`: a more natural walkthrough of the analysis on top of the package code.
 - `tests/`: estimator and diagnostics tests.
 - `reports/`: generated outputs, appendix, and figures.
 
 ## What I Focused On While Building This
 
 Core principles I tried to follow in this repository:
-1. You do **not** report one model result blindly; you triangulate and diagnose assumptions.
-2. You quantify uncertainty and identify extrapolation risk before recommending action.
-3. You add falsification pressure where you can: placebo outcomes, subgroup checks, and weight fragility all matter.
-4. You keep the writeup honest. A good causal project should make its weak spots easier to see, not harder.
+1. One estimate on its own is never enough; the more important part is how the answer changes across estimators and diagnostics.
+2. Uncertainty, overlap, and extrapolation risk matter just as much as the headline effect size.
+3. Placebo checks, subgroup variation, and fragile weights are part of the story, not side notes.
+4. The writeup should make the weak spots easier to see, not smoother to ignore.
