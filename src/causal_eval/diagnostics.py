@@ -50,6 +50,22 @@ def covariate_balance_table(
     return pd.DataFrame(rows).sort_values("covariate").reset_index(drop=True)
 
 
+def effective_sample_size(weights: np.ndarray) -> float:
+    weights = np.asarray(weights, dtype=float)
+    return float((weights.sum() ** 2) / np.sum(weights**2))
+
+
+def weight_summary(weights: np.ndarray) -> dict[str, float]:
+    weights = np.asarray(weights, dtype=float)
+    return {
+        "mean": float(np.mean(weights)),
+        "median": float(np.median(weights)),
+        "p95": float(np.quantile(weights, 0.95)),
+        "max": float(np.max(weights)),
+        "ess": effective_sample_size(weights),
+    }
+
+
 def overlap_summary(scores: np.ndarray, treatment: np.ndarray) -> dict[str, float]:
     treated_scores = scores[treatment == 1]
     control_scores = scores[treatment == 0]

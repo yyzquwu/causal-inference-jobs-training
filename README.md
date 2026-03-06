@@ -1,7 +1,7 @@
 # causal-inference-jobs-training
 
 Policy-evaluation portfolio project using the LaLonde job training dataset.  
-This repository reflects my genuine interest in causal inference: moving from raw observational data to transparent evidence with explicit diagnostics and uncertainty.
+This repository reflects my genuine interest in causal inference: moving from raw observational data to transparent evidence, then pressure-testing the answer until the fragile parts are visible.
 
 ## Project Motivation
 
@@ -9,17 +9,18 @@ I built this project to practice end-to-end causal inference on observational da
 - Framing estimands and assumptions clearly.
 - Estimating treatment effects with multiple complementary estimators.
 - Stress-testing identification with overlap, balance, and weight diagnostics.
-- Communicating risk-aware recommendations to non-technical stakeholders.
+- Adding falsification checks and subgroup analysis instead of stopping at one full-sample estimate.
+- Communicating where I would trust the result, and where I would not.
 
 ## Methods Implemented
 
 - Naive mean-difference baseline.
-- Propensity score matching (nearest-neighbor ATT).
-- Inverse probability weighting (ATE).
-- Doubly robust estimation (AIPW-style form).
-- Bootstrap uncertainty intervals for all estimators.
-- Diagnostics for overlap, balance, calibration, and effective sample size.
-- Weight-stability checks and trimming sensitivity analysis.
+- Matching with and without a caliper.
+- Raw IPW, stabilized IPW, and overlap weighting.
+- Doubly robust estimation plus cross-fitted DR as the primary estimator.
+- Bootstrap uncertainty intervals for the main estimators.
+- Diagnostics for overlap, balance, calibration, effective sample size, and weight concentration.
+- Weight-stability checks, placebo-outcome checks, subgroup heterogeneity, and trimming sensitivity analysis.
 
 ## Dataset
 
@@ -38,6 +39,8 @@ make demo
 Generated artifacts:
 - `reports/causal_results.md`
 - `reports/executive_memo.md`
+- `reports/methods_appendix.md`
+- `reports/figures/`
 
 ## Repository Structure
 
@@ -45,11 +48,12 @@ Generated artifacts:
 - `src/causal_eval/diagnostics.py`: overlap and covariate-balance diagnostics.
 - `scripts/run_demo.py`: end-to-end workflow from data to reports.
 - `tests/`: estimator and diagnostics tests.
-- `reports/`: generated outputs suitable for portfolio presentation.
+- `reports/`: generated outputs, appendix, and figures.
 
 ## What I Focused On While Building This
 
 Core principles I tried to follow in this repository:
 1. You do **not** report one model result blindly; you triangulate and diagnose assumptions.
 2. You quantify uncertainty and identify extrapolation risk before recommending action.
-3. You approach causal work with curiosity and rigor: you test assumptions, look for failure modes, and iterate.
+3. You add falsification pressure where you can: placebo outcomes, subgroup checks, and weight fragility all matter.
+4. You keep the writeup honest. A good causal project should make its weak spots easier to see, not harder.

@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-from causal_eval.diagnostics import covariate_balance_table, overlap_summary
+from causal_eval.diagnostics import covariate_balance_table, effective_sample_size, overlap_summary, weight_summary
 
 
 def test_overlap_summary_fields_exist() -> None:
@@ -22,3 +22,11 @@ def test_covariate_balance_table_shape() -> None:
     table = covariate_balance_table(frame, ["x", "z"], "t")
     assert list(table.columns) == ["covariate", "standardized_mean_diff"]
     assert len(table) == 2
+
+
+def test_weight_summary_and_ess() -> None:
+    weights = np.array([1.0, 2.0, 3.0, 4.0])
+    summary = weight_summary(weights)
+    assert summary["max"] == 4.0
+    assert summary["ess"] == effective_sample_size(weights)
+    assert summary["ess"] > 0
