@@ -41,3 +41,4 @@ Generated artifacts:
 - `notebooks/causal_walkthrough.ipynb`: walkthrough of the analysis on top of the package code.
 - `tests/`: estimator and diagnostics tests.
 - `reports/`: generated outputs, appendix, and figures.
+
